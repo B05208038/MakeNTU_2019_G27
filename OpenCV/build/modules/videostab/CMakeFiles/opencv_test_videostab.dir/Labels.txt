@@ -1,0 +1,17 @@
+# Target labels
+ Main
+ opencv_videostab
+ AccuracyTest
+# Source files and their labels
+/home/juiwenyeh/Lazi_tech/MakeNTU_2019_G27/OpenCV/modules/videostab/test/test_main.cpp
+ Main
+ opencv_videostab
+ AccuracyTest
+/home/juiwenyeh/Lazi_tech/MakeNTU_2019_G27/OpenCV/modules/videostab/test/test_motion_estimation.cpp
+ Main
+ opencv_videostab
+ AccuracyTest
+/home/juiwenyeh/Lazi_tech/MakeNTU_2019_G27/OpenCV/modules/videostab/test/test_precomp.hpp
+ Main
+ opencv_videostab
+ AccuracyTest
