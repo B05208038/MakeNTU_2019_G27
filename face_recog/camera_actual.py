@@ -65,7 +65,7 @@ while(True):
         break
     elif face_detect_true == 1:
         face_detect_counter+=1 
-        write_text = "{}_{:.0f}.jpg".format('user_photo', face_detect_counter)
+        write_text = "{}_{:.0f}.jpg".format('user1/user_photo', face_detect_counter)
         #still need directory
         cv2.imwrite(write_text, frame)
               
