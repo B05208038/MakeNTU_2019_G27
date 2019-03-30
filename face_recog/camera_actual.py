@@ -28,8 +28,15 @@ while(True):
     ret, print_frame = cap.read()
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     face_detect_true = 0
-
-
+    half_yh = 0
+    half_xw = 0
+    half_yh = 0
+    half_xw = 0
+    x = 0
+    y = 0
+    h = 0
+    w = 0
+    face_detect_true = 0
     
     face_detect = face_cascade.detectMultiScale(gray_frame, 1.3, 5)
     for (x,y,h,w) in face_detect:
@@ -37,35 +44,38 @@ while(True):
         half_xw = x+w/2
         half_yh = int(half_yh)
         half_xw = int(half_xw)
-        rect_frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-        circ_frame = cv2.circle(frame, (half_xw,half_yh), 5, (0, 255, 0), 2)
         face_detect_true = 1
-
-
-    if face_detect_counter == 10: 
-        pass
-    elif face_detect_true == 1:
-        face_detect_counter+=1 
-        write_text = "{}{:.0f}.jpg".format('user_photo', face_detect_counter)
-        #still need directory
-        cv2.imwrite(write_text, print_frame)
-              
-
+    rect_frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+    circ_frame = cv2.circle(frame, (half_xw,half_yh), 5, (0, 255, 0), 2)
+    
     rec_text = "{}: {:.0f}".format('detected photos', face_detect_counter)
     cv2.putText(rect_frame, rec_text, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 
     circle_text = "{:.2f}, {:.2f}".format(half_xw, half_yh)
     cv2.putText(circ_frame, circle_text, (half_xw,half_yh), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)   
 
+
+
+    if face_detect_counter == 10: 
+        #pass
+        break
+    elif face_detect_true == 1:
+        face_detect_counter+=1 
+        write_text = "{}_{:.0f}.jpg".format('user_photo', face_detect_counter)
+        #still need directory
+        cv2.imwrite(write_text, frame)
+              
+
+ 
     #show picture  
-    cv2.imshow('frame',frame)
+    #cv2.imshow('frame',frame)
 
     #break loop
-    if cv2.waitKey(1) & 0xFF == ord('1'):
-        break
+    #if cv2.waitKey(1) & 0xFF == ord('1'):
+    #   break
 
 # close camera
 cap.release()
 
 # close opencv windows
-cv2.destroyAllWindows()
+#cv2.destroyAllWindows()
