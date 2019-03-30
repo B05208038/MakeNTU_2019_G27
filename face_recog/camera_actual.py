@@ -47,13 +47,17 @@ while(True):
         face_detect_true = 1
     rect_frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
     circ_frame = cv2.circle(frame, (half_xw,half_yh), 5, (0, 255, 0), 2)
-    
+    center = cv2.circle(frame, (320, 240), 5, (255, 255, 0), 2)
+
+    #for debugging    
     rec_text = "{}: {:.0f}".format('detected photos', face_detect_counter)
     cv2.putText(rect_frame, rec_text, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 
     circle_text = "{:.2f}, {:.2f}".format(half_xw, half_yh)
     cv2.putText(circ_frame, circle_text, (half_xw,half_yh), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)   
 
+    circle_text = "{:.2f}, {:.2f}".format(320, 240)
+    cv2.putText(circ_frame, circle_text, (320, 240), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)   
 
 
     if face_detect_counter == 10: 
