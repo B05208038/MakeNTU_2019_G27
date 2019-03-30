@@ -15,9 +15,11 @@ import os
 #ref from https://github.com/ageitgey/face_recognition
 #choose the camera 
 # #use pre-trained data
-face_cascade = cv2.CascadeClassifier('/usr/local/lib/python3.5/dist-packages/cv2/data/haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('/usr/local/lib/python3.5/dist-packages/cv2/data/haarcascade_eye.xml')
-    
+#face_cascade = cv2.CascadeClassifier('/usr/local/lib/python3.5/dist-packages/cv2/data/haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('../data/haarcascade_frontalface_default.xml')
+#eye_cascade = cv2.CascadeClassifier('/usr/local/lib/python3.5/dist-packages/cv2/data/haarcascade_eye.xml')
+eye_cascade = cv2.CascadeClassifier('../data/haarcascade_eye.xml')
+   
 cap = cv2.VideoCapture(0)
 face_detect_counter = 0
 while(True):
