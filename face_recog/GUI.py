@@ -1,9 +1,11 @@
 import os
+#import tkinter
 from tkinter import *
+import subprocess
 from utils import genHash
 from face_api import AzureAPI
 
-class GUIDemo(Frame):
+class GUI_prototype(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.grid()
@@ -13,8 +15,8 @@ class GUIDemo(Frame):
 
     def Register(self):
         if self.UserId == None:
-            os.system("camera_actual.py")
-            for i in range(10):
+            os.system("python3 camera_actual.py")
+            for i in range(1, 10):
                 temp_name = "{}_{:.0f}.jpg".format('user1/user_photo', i)
                 faceid = self.myAPI.GetFaceId(temp_name)
                 if faceid == "":
@@ -29,10 +31,11 @@ class GUIDemo(Frame):
     def Checkout(self):
         if self.UserId == None:
             return "Have not register yet!"
-        os.system("camera_actual.py")            
-        for i in range(10):
-            temp_name = "{}_{:.0f}.jpg".format('user1/user_photo', i)
+        os.system("python3 camera_actual.py")            
+        for i in range(1, 10):
+            temp_name = "{}_{:.0f}.jpg".format('user1/user_photo', 11-i)
             cur_id = self.myAPI.GetFaceId(temp_name)
+            os.remove(temp_name)
             if cur_id == "":
                 return "Face Not Detected!"
             if cur_id == "api_error":
@@ -53,7 +56,7 @@ class GUIDemo(Frame):
         self.register_button["command"] = self.register
         
         self.start_button = Button(self)
-        self.start_button["text"] = "Unlock"
+        self.start_button["text"] = "start chase"
         self.start_button.grid(row=2, column=2)
         #self.start_button["command"] = 
         
@@ -66,3 +69,7 @@ class GUIDemo(Frame):
         self.displayText["text"] = "Copyright NTUME fishfanfan"
         self.displayText.grid(row=3, column=0, columnspan=7)
             
+if __name__ == '__main__':
+    root = Tk(className="Face chase")
+    app = GUI_prototype(master=root)
+    app.mainloop()
